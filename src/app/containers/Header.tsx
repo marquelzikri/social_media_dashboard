@@ -24,6 +24,7 @@ function SidebarToggle() {
       className="text-2xl transition duration-500 ease-in-out transform hover:scale-95"
       style={{...(!isSidebarOpen ? {transform: 'scaleX(-1)'}:{})}}
       onClick={onClick}
+      aria-label="sidebar-toggle"
     >
       <AiOutlineMenuFold />
     </button>
@@ -38,7 +39,7 @@ function ProfileCard() {
           <span className="text-sm font-medium text-gray-600 dark:text-white">
             Charlie
           </span>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-gray-500">
             Admin
           </span>
         </div>
