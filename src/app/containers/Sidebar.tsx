@@ -1,42 +1,48 @@
+import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { useAppSelector } from '../hooks';
 
 import { selectSidebar } from '../../features/sidebar/sidebarSlice';
+import { forwardRef } from 'react';
 
 type Route = {
   label: string;
+  path: string;
 };
 
 function Sidebar() {
   const isSidebarOpen = useAppSelector(selectSidebar);
   const routes: Route[] = [
     {
-      label: 'Users'
+      label: 'Users',
+      path: '/users',
     },
     {
-      label: 'Posts'
+      label: 'Posts',
+      path: '/posts',
     },
     {
-      label: 'Albums'
+      label: 'Albums',
+      path: '/albums',
     },
   ];
 
   return (
     <aside
       className={clsx(
-        "relative hidden h-full shadow-lg lg:block transform transition-all duration-700",
+        "relative hidden h-full lg:block transform transition-all duration-700",
         isSidebarOpen ? "translate-x-0 w-80" : "-translate-x-full w-0 overflow-hidden",
       )}
     >
-      <div className="h-full bg-white rounded-2xl dark:bg-gray-700">
+      <div className="h-full bg-white shadow-lg rounded-2xl dark:bg-gray-700">
         <div className="flex items-center justify-center pt-6">
           <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
             <defs>
               <linearGradient x1="12.5189534%" y1="85.2128611%" x2="88.2282959%" y2="10.0225497%" id="linearGradient-1">
-                <stop stop-color="#FF0057" stop-opacity="0.16" offset="0%">
+                <stop stopColor="#FF0057" stopOpacity="0.16" offset="0%">
                 </stop>
-                <stop stop-color="#FF0057" offset="86.1354%">
+                <stop stopColor="#FF0057" offset="86.1354%">
                 </stop>
               </linearGradient>
             </defs>
@@ -52,7 +58,7 @@ function Sidebar() {
         </div>
         <nav className="mt-6">
           <div>
-            {routes.map((route, index) => (<SidebarItem key={index} label={route.label} />))}
+            {routes.map((route, index) => (<SidebarItem key={index} {...route} />))}
           </div>
         </nav>
       </div>
@@ -60,17 +66,14 @@ function Sidebar() {
   );
 }
 
-function SidebarItem(props: any) {
-  const { label, isActive } = props;
+const SidebarItem = forwardRef((props: Route, ref: any) => {
+  const { label, path } = props;
+
   return (
-    <a
-      className={clsx(
-        "flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200",
-        isActive
-          ? "text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
-          : "text-gray-500 dark:text-gray-200 hover:text-blue-500"
-      )}
-      href="/test"
+    <NavLink
+      to={path}
+      className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
+      activeClassName="text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
     >
       <span className="text-left">
         <svg width="20" fill="currentColor" height="20" className="w-5 h-5" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -81,8 +84,8 @@ function SidebarItem(props: any) {
       <span className="mx-4 text-sm font-normal">
         {label}
       </span>
-    </a>
+    </NavLink>
   );
-}
+});
 
 export default Sidebar;
