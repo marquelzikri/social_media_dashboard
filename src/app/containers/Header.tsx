@@ -32,7 +32,7 @@ function SidebarToggle() {
 
 function ProfileCard() {
   return (
-    <div className="p-4 bg-white shadow-lg w-44 rounded-2xl dark:bg-gray-800">
+    <div className="flex justify-center h-16 bg-white shadow-lg dark:bg-gray-800 rounded-2xl w-44">
       <div className="flex flex-row items-center justify-center gap-4">
         <div className="flex flex-col">
           <span className="text-sm font-medium text-gray-600 dark:text-white">
