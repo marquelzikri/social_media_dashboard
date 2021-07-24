@@ -43,7 +43,7 @@ function ProfileCard() {
           </span>
         </div>
         <div className="flex-shrink-0">
-          <a href="#" className="relative block">
+          <a href="/#" className="relative block">
             <img alt="profile" src="https://www.tailwind-kit.com/images/person/1.jpg" className="object-cover w-10 h-10 mx-auto rounded-full " />
           </a>
         </div>
