@@ -18,7 +18,7 @@ function Sidebar(props: any) {
   ];
 
   return (
-    <div className="relative hidden h-full shadow-lg lg:block w-80">
+    <aside className="relative hidden h-full shadow-lg lg:block w-80">
       <div className="h-full bg-white rounded-2xl dark:bg-gray-700">
         <div className="flex items-center justify-center pt-6">
           <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
@@ -46,7 +46,7 @@ function Sidebar(props: any) {
           </div>
         </nav>
       </div>
-    </div>
+    </aside>
   );
 }
 
