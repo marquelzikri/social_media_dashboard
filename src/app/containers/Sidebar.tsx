@@ -1,10 +1,15 @@
 import clsx from 'clsx';
 
+import { useAppSelector } from '../hooks';
+
+import { selectSidebar } from '../../features/sidebar/sidebarSlice';
+
 type Route = {
   label: string;
 };
 
-function Sidebar(props: any) {
+function Sidebar() {
+  const isSidebarOpen = useAppSelector(selectSidebar);
   const routes: Route[] = [
     {
       label: 'Users'
@@ -18,7 +23,12 @@ function Sidebar(props: any) {
   ];
 
   return (
-    <aside className="relative hidden h-full shadow-lg lg:block w-80">
+    <aside
+      className={clsx(
+        "relative hidden h-full shadow-lg lg:block transform transition-all duration-700",
+        isSidebarOpen ? "translate-x-0 w-80" : "-translate-x-full w-0 overflow-hidden",
+      )}
+    >
       <div className="h-full bg-white rounded-2xl dark:bg-gray-700">
         <div className="flex items-center justify-center pt-6">
           <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
@@ -54,13 +64,12 @@ function SidebarItem(props: any) {
   const { label, isActive } = props;
   return (
     <a
-      className={
-        clsx(
-          "flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200",
-          isActive
-            ? "text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
-            : "text-gray-500 dark:text-gray-200 hover:text-blue-500"
-        )}
+      className={clsx(
+        "flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200",
+        isActive
+          ? "text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
+          : "text-gray-500 dark:text-gray-200 hover:text-blue-500"
+      )}
       href="/test"
     >
       <span className="text-left">
