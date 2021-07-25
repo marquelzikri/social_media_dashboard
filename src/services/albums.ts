@@ -20,4 +20,4 @@ export const albumsApi = createApi({
   }),
 });
 
-export const { useGetUserAlbumsQuery } = albumsApi;
+export const { useGetUserAlbumsQuery, useGetAlbumPhotosQuery, useGetPhotoByIdQuery } = albumsApi;
