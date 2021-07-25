@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
 import { selectSidebar } from '../../features/sidebar/sidebarSlice';
 
 import { useAppSelector } from '../hooks';
-import clsx from 'clsx';
 
 function Dashboard(props: any) {
   const location = useLocation();
