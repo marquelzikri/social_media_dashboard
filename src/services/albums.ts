@@ -11,6 +11,9 @@ export const albumsApi = createApi({
     getUserAlbums: builder.query<Album[], { userId?: number }>({
       query: ({ userId }) => `albums?userId=${userId}`,
     }),
+    getAlbumById: builder.query<Album, { albumId?: number }>({
+      query: ({ albumId }) => `albums/${albumId}`,
+    }),
     getAlbumPhotos: builder.query<Photo[], { albumId?: number }>({
       query: ({ albumId }) => `albums/${albumId}/photos`,
     }),
@@ -20,4 +23,4 @@ export const albumsApi = createApi({
   }),
 });
 
-export const { useGetUserAlbumsQuery, useGetAlbumPhotosQuery, useGetPhotoByIdQuery } = albumsApi;
+export const { useGetUserAlbumsQuery, useGetAlbumPhotosQuery, useGetPhotoByIdQuery, useGetAlbumByIdQuery } = albumsApi;

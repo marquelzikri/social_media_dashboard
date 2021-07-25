@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPostByIdQuery, useGetPostCommentsQuery } from '../../../services/posts';
 import Loader from '../../components/Loader';
 
-function Posts() {
+function Post() {
   const params = useParams<{ id: string }>();
   const postId = params.id ? parseInt(params.id) : undefined;
 
@@ -38,4 +38,4 @@ function Posts() {
   );
 }
 
-export default Posts;
+export default Post;
