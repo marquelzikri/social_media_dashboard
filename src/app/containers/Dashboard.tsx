@@ -18,8 +18,8 @@ function Dashboard(props: any) {
       <Sidebar />
       <section
         className={clsx(
-          "h-full px-4 transition-all duration-1000",
-          isSidebarOpen ? "w-0 transform translate-x-full sm:translate-x-0 sm:transform-none sm:w-full" : ""
+          "h-full px-4 transition-all duration-500",
+          isSidebarOpen ? "w-0 invisible sm:visible transform translate-x-full sm:translate-x-0 sm:transform-none sm:w-full" : "w-full"
         )}
       >
         <Header />

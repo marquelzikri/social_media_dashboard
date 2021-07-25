@@ -35,7 +35,7 @@ function Sidebar() {
   return (
     <aside
       className={clsx(
-        "relative h-full lg:block transform transition-all duration-1000",
+        "relative h-full lg:block transform transition-all duration-500",
         isSidebarOpen ? "translate-x-0 w-full sm:w-80" : "-translate-x-full w-0 overflow-hidden",
       )}
     >
@@ -63,7 +63,7 @@ function Sidebar() {
         </div>
         <nav className="mt-6">
           <div>
-            {routes.map((route, index) => (<SidebarItem key={index} {...route} />))}
+            {routes.map((route, index) => (<SidebarItem key={index} isSidebarOpen={isSidebarOpen} {...route} />))}
           </div>
         </nav>
       </div>
@@ -71,13 +71,16 @@ function Sidebar() {
   );
 }
 
-const SidebarItem = forwardRef((props: Route) => {
-  const { label, path } = props;
+const SidebarItem = forwardRef((props: Route & {isSidebarOpen: boolean}) => {
+  const { label, path,isSidebarOpen } = props;
 
   return (
     <NavLink
       to={path}
-      className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-all duration-1000 dark:text-gray-200 hover:text-blue-500"
+      className={clsx(
+        "flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-all duration-1000 dark:text-gray-200 hover:text-blue-500",
+        isSidebarOpen ? "translate-x-0 w-full" : "-translate-x-full w-0 invisible"
+      )}
       activeClassName="text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
     >
       <span className="text-left">
