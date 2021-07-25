@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import Loader from '../../components/Loader';
+import Post from '../../components/Post';
 import UserCard from '../../components/UserCard';
 
 import { useGetUserAlbumsQuery } from '../../../services/albums';
@@ -67,24 +68,7 @@ function Posts(props: any) {
       {isLoading ? (
         <Loader label="Loading posts" />
       ) : (
-        posts?.map((post, index) => (
-          <div key={index} className="flex justify-center">
-            <article className="p-4 m-4 bg-white rounded-md 2xl:w-1/2">
-              <h1 className="text-xl font-bold">
-                {post.title}
-              </h1>
-              <p className="my-4">
-                {post.body}
-              </p>
-              <Link
-                to={`/posts/${post.id}`}
-                className="px-4 py-2 mt-4 text-sm text-white bg-blue-600 rounded-md"
-              >
-                View Comments
-              </Link>
-            </article>
-          </div>
-        ))
+        posts?.map((post, index) => (<Post key={index} {...post} />))
       )}
     </section>
   );

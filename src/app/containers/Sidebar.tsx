@@ -66,13 +66,13 @@ function Sidebar() {
   );
 }
 
-const SidebarItem = forwardRef((props: Route, ref: any) => {
+const SidebarItem = forwardRef((props: Route) => {
   const { label, path } = props;
 
   return (
     <NavLink
       to={path}
-      className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
+      className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-all duration-200 dark:text-gray-200 hover:text-blue-500"
       activeClassName="text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
     >
       <span className="text-left">
