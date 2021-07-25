@@ -6,6 +6,7 @@ import {
 
 import Dashboard from './app/containers/Dashboard';
 
+import Profile from './app/pages/Profile';
 import Users from './app/pages/Users';
 
 function App() {
@@ -14,8 +15,11 @@ function App() {
       <Router>
         <Dashboard>
           <Switch>
-            <Route path="/users">
+            <Route exact path="/users">
               <Users />
+            </Route>
+            <Route path="/users/:id">
+              <Profile />
             </Route>
           </Switch>
         </Dashboard>
