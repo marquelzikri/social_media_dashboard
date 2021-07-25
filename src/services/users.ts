@@ -8,10 +8,13 @@ export const usersApi = createApi({
   reducerPath: 'users',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getUsers: builder.query<User[], null>({
-      query: () => 'users',
+    getUser: builder.query<User, { userId?: number }>({
+      query: ({ userId }) => `users/${userId}`,
+    }),
+    getUsers: builder.query<User[], object>({
+      query: () => `users`,
     }),
   }),
 });
 
-export const { useGetUsersQuery } = usersApi;
+export const { useGetUserQuery, useGetUsersQuery } = usersApi;
