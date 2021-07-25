@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
+import { IoCloseSharp } from 'react-icons/io5';
+
 import { useAppDispatch, useAppSelector } from '../hooks';
 
 import { selectSidebar, toggleSidebar } from '../../features/sidebar/sidebarSlice';
-import { forwardRef } from 'react';
-import { IoCloseSharp } from 'react-icons/io5';
 
 type Route = {
   label: string;
@@ -71,7 +71,7 @@ function Sidebar() {
   );
 }
 
-const SidebarItem = forwardRef((props: Route & {isSidebarOpen: boolean}) => {
+function SidebarItem(props: Route & {isSidebarOpen: boolean}) {
   const { label, path,isSidebarOpen } = props;
 
   return (
@@ -94,6 +94,6 @@ const SidebarItem = forwardRef((props: Route & {isSidebarOpen: boolean}) => {
       </span>
     </NavLink>
   );
-});
+};
 
 export default Sidebar;
