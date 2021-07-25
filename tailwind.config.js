@@ -7,6 +7,7 @@ module.exports = {
         'dashboard': 'calc(100% - 9rem)',
         'profile-content': 'calc(100% - 10.5rem)',
         'post-wrapper': 'calc(100% - 7rem)',
+        'post-list': 'calc(100% - 5.5rem)',
       }
     },
   },
