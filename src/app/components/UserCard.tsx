@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { BiBuildings } from 'react-icons/bi';
 import { IoMailOpenSharp } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
@@ -8,7 +10,12 @@ function UserCard(props: Partial<UserModel & { showProfileButton?: boolean }>) {
   const { id, email, name, company, showProfileButton } = props;
 
   return (
-    <div className="w-64 bg-white shadow-lg rounded-2xl dark:bg-gray-800">
+    <div
+      className={clsx(
+        "w-64 bg-white shadow-lg rounded-2xl dark:bg-gray-800",
+        showProfileButton ? "max-h-80" : "max-h-60"
+      )}
+    >
       <img alt="profile" src="https://picsum.photos/300" className="w-full mb-4 rounded-t-lg h-28" />
       <div className="flex flex-col items-center justify-center p-4 -mt-16">
         <a href="/#" className="relative block">
