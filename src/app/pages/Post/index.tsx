@@ -12,7 +12,7 @@ function Post() {
   if (isPostLoading) return <Loader label="Loading post detail" />
   return (
     <section id="posts" className="justify-between h-full gap-3 overflow-auto">
-      <section className="flex justify-center w-full mb-8 md:w-auto">
+      <section className="mb-8">
         <article className="p-4 bg-white rounded-md 2xl:w-1/2">
           <h1 className="mb-4 text-xl font-bold">
             {post?.title}

@@ -1,9 +1,10 @@
 import { useGetPostsQuery } from '../../../services/posts';
+import Loader from '../../components/Loader';
 
 import Post from '../../components/Post';
 
 function Posts() {
-  const { data: posts } = useGetPostsQuery({});
+  const { data: posts, isLoading, isError, error } = useGetPostsQuery({});
   return (
     <div className="w-full h-full">
       <div className="flex items-end justify-between mb-12 header">
@@ -18,9 +19,13 @@ function Posts() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 overflow-auto h-post-list md:grid-cols-2 xl:grid-cols-3">
-        {posts?.map((post, index) => (<Post key={index} {...post} />))}
-      </div>
+      {isLoading && <Loader label="Loading posts" />}
+      {isError && <span>{JSON.stringify(error)}</span>}
+      {posts && (
+        <div className="grid grid-cols-1 gap-4 overflow-auto h-post-list md:grid-cols-2 xl:grid-cols-3">
+          {posts.map((post, index) => (<Post key={index} {...post} />))}
+        </div>
+      )}
     </div>
   );
 }
