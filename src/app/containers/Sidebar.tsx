@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
-import { selectSidebar } from '../../features/sidebar/sidebarSlice';
+import { selectSidebar, toggleSidebar } from '../../features/sidebar/sidebarSlice';
 import { forwardRef } from 'react';
+import { IoCloseSharp } from 'react-icons/io5';
 
 type Route = {
   label: string;
@@ -12,6 +13,9 @@ type Route = {
 };
 
 function Sidebar() {
+  const dispatch = useAppDispatch();
+  const onClick = () => dispatch(toggleSidebar());
+
   const isSidebarOpen = useAppSelector(selectSidebar);
   const routes: Route[] = [
     {
@@ -31,11 +35,12 @@ function Sidebar() {
   return (
     <aside
       className={clsx(
-        "relative hidden h-full lg:block transform transition-all duration-700",
-        isSidebarOpen ? "translate-x-0 w-80" : "-translate-x-full w-0 overflow-hidden",
+        "relative h-full lg:block transform transition-all duration-1000",
+        isSidebarOpen ? "translate-x-0 w-full sm:w-80" : "-translate-x-full w-0 overflow-hidden",
       )}
     >
       <div className="h-full bg-white shadow-lg rounded-2xl dark:bg-gray-700">
+        <IoCloseSharp className="absolute text-lg top-4 right-4 sm:hidden" onClick={onClick} />
         <div className="flex items-center justify-center pt-6">
           <svg width="35" height="30" viewBox="0 0 256 366" version="1.1" preserveAspectRatio="xMidYMid">
             <defs>
@@ -72,7 +77,7 @@ const SidebarItem = forwardRef((props: Route) => {
   return (
     <NavLink
       to={path}
-      className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-all duration-200 dark:text-gray-200 hover:text-blue-500"
+      className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-all duration-1000 dark:text-gray-200 hover:text-blue-500"
       activeClassName="text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
     >
       <span className="text-left">
