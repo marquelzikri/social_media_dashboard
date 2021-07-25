@@ -26,7 +26,7 @@ function Dashboard(props: any) {
             ))}
             </ol>
         </nav>
-        <main className="h-full px-2 py-6 overflow-auto" style={{ height: "calc(100% - 9rem)" }}>
+        <main className="px-2 py-6 h-dashboard">
           {props.children}
         </main>
       </section>
