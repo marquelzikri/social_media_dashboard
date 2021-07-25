@@ -7,6 +7,7 @@ import {
 import Dashboard from './app/containers/Dashboard';
 
 import Album from './app/pages/Album/index';
+import Albums from './app/pages/Albums';
 import Post from './app/pages/Post/index';
 import Posts from './app/pages/Posts/index';
 import Profile from './app/pages/Profile';
@@ -24,11 +25,14 @@ function App() {
             <Route path="/users/:id">
               <Profile />
             </Route>
-            <Route path="/posts">
+            <Route exact path="/posts">
               <Posts />
             </Route>
             <Route path="/posts/:id">
               <Post />
+            </Route>
+            <Route exact path="/albums">
+              <Albums />
             </Route>
             <Route path="/albums/:id">
               <Album />

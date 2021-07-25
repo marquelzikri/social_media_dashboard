@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import Loader from '../../components/Loader';
@@ -9,6 +9,7 @@ import UserCard from '../../components/UserCard';
 import { useGetUserAlbumsQuery } from '../../../services/albums';
 import { useGetUserPostsQuery } from '../../../services/posts';
 import { useGetUserQuery } from '../../../services/users';
+import Album from '../../components/Album';
 
 
 function Profile() {
@@ -84,21 +85,9 @@ function Albums(props: any) {
       {isLoading ? (
         <Loader label="Loading posts" />
       ) : (
-        albums?.map((album, index) => (
-          <div key={index} className="flex justify-center">
-            <article className="w-full p-4 m-4 bg-white rounded-md">
-              <h1 className="mb-4 text-xl font-bold">
-                {album.title}
-              </h1>
-              <Link
-                to={`/albums/${album.id}`}
-                className="px-4 py-2 mt-4 text-sm text-white bg-blue-600 rounded-md"
-              >
-                View Album
-              </Link>
-            </article>
-          </div>
-        ))
+        <div>
+          {albums?.map((album, index) => (<Album key={index} {...album} />))}
+        </div>
       )}
     </section>
   );

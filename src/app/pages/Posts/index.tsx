@@ -1,8 +1,9 @@
 import { useGetPostsQuery } from '../../../services/posts';
+
 import Post from '../../components/Post';
 
 function Posts() {
-  const {data: posts} = useGetPostsQuery({});
+  const { data: posts } = useGetPostsQuery({});
   return (
     <div className="w-full h-full">
       <div className="flex items-end justify-between mb-12 header">

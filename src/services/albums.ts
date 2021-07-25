@@ -8,6 +8,9 @@ export const albumsApi = createApi({
   reducerPath: 'albums',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
+    getAlbums: builder.query<Album[], object>({
+      query: () => 'albums',
+    }),
     getUserAlbums: builder.query<Album[], { userId?: number }>({
       query: ({ userId }) => `albums?userId=${userId}`,
     }),
@@ -23,4 +26,10 @@ export const albumsApi = createApi({
   }),
 });
 
-export const { useGetUserAlbumsQuery, useGetAlbumPhotosQuery, useGetPhotoByIdQuery, useGetAlbumByIdQuery } = albumsApi;
+export const {
+  useGetAlbumsQuery,
+  useGetUserAlbumsQuery,
+  useGetAlbumPhotosQuery,
+  useGetPhotoByIdQuery,
+  useGetAlbumByIdQuery
+} = albumsApi;
