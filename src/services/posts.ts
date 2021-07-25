@@ -8,6 +8,9 @@ export const postsApi = createApi({
   reducerPath: 'posts',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
+    getPosts: builder.query<Post[], object>({
+      query: () => `posts`,
+    }),
     getUserPosts: builder.query<Post[], { userId?: number }>({
       query: ({ userId }) => `posts?userId=${userId}`,
     }),
@@ -20,4 +23,4 @@ export const postsApi = createApi({
   }),
 });
 
-export const { useGetUserPostsQuery, useGetPostByIdQuery, useGetPostCommentsQuery } = postsApi;
+export const { useGetPostsQuery, useGetUserPostsQuery, useGetPostByIdQuery, useGetPostCommentsQuery } = postsApi;
