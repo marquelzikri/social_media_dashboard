@@ -25,7 +25,7 @@ function Post() {
     <>
       <section id="posts" className="justify-between h-full gap-3 overflow-auto">
         <section className="mb-8">
-          <article className="p-4 bg-white rounded-md 2xl:w-1/2">
+          <article className="p-4 bg-white rounded-md">
             <h1 className="mb-4 text-xl font-bold">
               {post?.title}
             </h1>
@@ -53,9 +53,11 @@ function Post() {
           </div>
         </div>
         {isCommentsLoading && <Loader label="Loading comments" />}
-        {comments?.map((comment, index) => (
-          <Comment key={index} showButtons={true} {...comment} />
-        ))}
+        <div className="grid items-center justify-items-center">
+          {comments?.map((comment, index) => (
+            <Comment key={index} showButtons={true} {...comment} />
+          ))}
+        </div>
       </section>
       <Modal isVisible={isModalVisible} onClose={toggleModal}>
         <CommentForm />
