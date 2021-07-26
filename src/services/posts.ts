@@ -20,7 +20,28 @@ export const postsApi = createApi({
     getPostComments: builder.query<Comment[], { postId?: number }>({
       query: ({ postId }) => `posts/${postId}/comments`,
     }),
+    createPost: builder.mutation<Post, Partial<Post> & Pick<Post, 'userId'>>({
+      query: ({ id, ...postData }) => ({
+        url: `posts`,
+        method: 'POST',
+        body: postData,
+      }),
+    }),
+    editPost: builder.mutation<Post, Partial<Post> & Pick<Post, 'id' & 'userId'>>({
+      query: ({ id, ...postData }) => ({
+        url: `posts/${id}`,
+        method: 'PUT',
+        body: postData,
+      }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetUserPostsQuery, useGetPostByIdQuery, useGetPostCommentsQuery } = postsApi;
+export const {
+  useGetPostsQuery,
+  useGetUserPostsQuery,
+  useGetPostByIdQuery,
+  useGetPostCommentsQuery,
+  useCreatePostMutation,
+  useEditPostMutation,
+} = postsApi;
