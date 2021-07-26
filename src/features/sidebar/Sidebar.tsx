@@ -7,9 +7,9 @@ import { FiUsers } from 'react-icons/fi';
 import { IoCloseSharp } from 'react-icons/io5';
 import { IoIosPaper } from 'react-icons/io';
 
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { selectSidebar, toggleSidebar } from '../../features/sidebar/sidebarSlice';
+import { selectSidebar, toggleSidebar } from './sidebarSlice';
 
 type Route = {
   label: string;
