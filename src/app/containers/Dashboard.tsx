@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../../features/sidebar/Sidebar';
 
 import { selectSidebar } from '../../features/sidebar/sidebarSlice';
 

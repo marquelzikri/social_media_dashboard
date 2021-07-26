@@ -40,6 +40,26 @@ export const postsApi = createApi({
         method: 'DELETE',
       }),
     }),
+    createComment: builder.mutation<Comment, Partial<Comment> & Pick<Comment, 'postId'>>({
+      query: ({ postId, ...postData }) => ({
+        url: `posts/${postId}/comments`,
+        method: 'POST',
+        body: postData,
+      }),
+    }),
+    editComment: builder.mutation<Comment, Partial<Comment>>({
+      query: ({ id, ...postData }) => ({
+        url: `/comments/${id}`,
+        method: 'PUT',
+        body: postData,
+      }),
+    }),
+    deleteComment: builder.mutation<Comment, Partial<Comment>>({
+      query: ({ id }) => ({
+        url: `/comments/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -51,4 +71,7 @@ export const {
   useCreatePostMutation,
   useEditPostMutation,
   useDeletePostMutation,
+  useCreateCommentMutation,
+  useEditCommentMutation,
+  useDeleteCommentMutation,
 } = postsApi;

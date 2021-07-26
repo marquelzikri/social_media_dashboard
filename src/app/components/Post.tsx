@@ -27,7 +27,7 @@ function Post(props: Partial<PostModel & { showButtons: boolean }>) {
   const toggleDeletePostModal = () => setIsDeletingPost((isDeletingPost) => !isDeletingPost);
   const deletePostClickHandler = () => {
     setIsDeletingPost(true);
-    deletePost({ id: postData.id! })
+    deletePost({ id: postData.id! });
   };
 
   return (
