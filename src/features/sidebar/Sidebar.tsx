@@ -42,6 +42,7 @@ function Sidebar() {
 
   return (
     <aside
+      data-testid="sidebar"
       className={clsx(
         "relative h-full lg:block transform transition-all duration-500",
         isSidebarOpen ? "translate-x-0 w-full sm:w-80" : "-translate-x-full w-0 overflow-hidden",
@@ -94,7 +95,7 @@ function SidebarItem(props: Route & {isSidebarOpen: boolean}) {
       <span className="text-left">
         {icon}
       </span>
-      <span className="mx-4 text-sm font-normal">
+      <span data-testid="sidebar-item" className="mx-4 text-sm font-normal">
         {label}
       </span>
     </NavLink>
