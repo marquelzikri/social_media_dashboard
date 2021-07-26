@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { FC, Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -9,7 +9,7 @@ import { selectSidebar } from '../../features/sidebar/sidebarSlice';
 
 import { useAppSelector } from '../hooks';
 
-function Dashboard(props: any) {
+const Dashboard: FC = (props) => {
   const location = useLocation();
   const isSidebarOpen = useAppSelector(selectSidebar);
 
