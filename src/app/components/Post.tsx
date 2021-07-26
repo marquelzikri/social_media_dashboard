@@ -3,17 +3,32 @@ import { Link } from 'react-router-dom';
 
 import Modal from '../containers/Modal';
 
+import Loader from './Loader';
 import PostForm from './PostForm';
 
 import { Post as PostModel } from '../../models/Post';
+import { useDeletePostMutation } from '../../services/posts';
 
 function Post(props: Partial<PostModel & { showButtons: boolean }>) {
   const userId = 1;
-  const {showButtons, ...postData} = props;
+  const { showButtons, ...postData } = props;
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [deletePost, {
+    isLoading: isDeleting,
+    isError: isDeletePostError,
+    isSuccess: isDeletePostSuccess,
+    error: deletePostError,
+  }] = useDeletePostMutation();
 
-  const toggleModal = () => setIsModalVisible((isVisible) => !isVisible);
+  const [isEditingPost, setIsEditingPost] = useState(false);
+  const [isDeletingPost, setIsDeletingPost] = useState(false);
+
+  const toggleEditPostModal = () => setIsEditingPost((isVisible) => !isVisible);
+  const toggleDeletePostModal = () => setIsDeletingPost((isDeletingPost) => !isDeletingPost);
+  const deletePostClickHandler = () => {
+    setIsDeletingPost(true);
+    deletePost({ id: postData.id! })
+  };
 
   return (
     <>
@@ -32,12 +47,13 @@ function Post(props: Partial<PostModel & { showButtons: boolean }>) {
                 <>
                   <button
                     className="px-4 py-2 mt-4 text-sm text-white bg-green-600 rounded-md"
-                    onClick={toggleModal}
+                    onClick={toggleEditPostModal}
                   >
                     Edit Post
                   </button>
                   <button
                     className="px-4 py-2 mt-4 text-sm text-white bg-red-600 rounded-md"
+                    onClick={deletePostClickHandler}
                   >
                     Delete Post
                   </button>
@@ -53,8 +69,15 @@ function Post(props: Partial<PostModel & { showButtons: boolean }>) {
           ) : null}
         </article>
       </div>
-      <Modal isVisible={isModalVisible} onClose={toggleModal}>
+      <Modal isVisible={isEditingPost} onClose={toggleEditPostModal}>
         <PostForm id={postData.userId} {...postData} />
+      </Modal>
+      <Modal isVisible={isDeletingPost} onClose={toggleDeletePostModal}>
+        <section className="p-6 bg-white rounded-md">
+          {isDeleting && <Loader label="Deleting post..." />}
+          {isDeletePostSuccess && <span className="text-lg font-bold">Post deleted</span>}
+          {isDeletePostError && <span>{JSON.stringify(deletePostError)}</span>}
+        </section>
       </Modal>
     </>
   );

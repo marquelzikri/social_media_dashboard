@@ -1,7 +1,6 @@
 import { useState, FormEvent } from 'react';
 
 import Loader from './Loader';
-
 import Post from './Post';
 
 import { useCreatePostMutation, useEditPostMutation } from '../../services/posts';
