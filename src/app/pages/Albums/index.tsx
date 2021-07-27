@@ -9,7 +9,10 @@ function Albums() {
   if (isLoading) return <Loader label="Loading albums" />
   if (isError) return <span>{JSON.stringify(error)}</span>
   return (
-    <div className="grid h-full gap-2 overflow-auto justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+    <div
+      data-testid="albums"
+      className="grid h-full gap-2 overflow-auto justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4"
+    >
       {albums?.map((album, index) => <Album key={index} {...album} />)}
     </div>
   );
