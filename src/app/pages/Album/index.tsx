@@ -9,7 +9,7 @@ function Album() {
   const { data: album, isLoading: isAlbumLoading } = useGetAlbumByIdQuery({ albumId }, { skip: !albumId });
   const { data: photos, isLoading: isPhotosLoading } = useGetAlbumPhotosQuery({ albumId }, { skip: !albumId });
   return (
-    <section id="posts" className="justify-between h-full gap-3 overflow-auto">
+    <section data-testid="album" className="justify-between h-full gap-3 overflow-auto">
       <section className="w-full mb-8 md:w-auto">
         <article className="p-4 bg-white rounded-md">
           {isAlbumLoading && <Loader label="Loading album info" />}
@@ -23,7 +23,7 @@ function Album() {
       <h1 className="text-lg font-bold">Photos</h1>
       {isPhotosLoading && <Loader label="Loading photos" />}
       {photos && (
-        <div className="grid gap-2 overflow-auto justify-items-center sm:grid-cols-2 xl:grid-cols-3">
+        <div data-testid="photo" className="grid gap-2 overflow-auto justify-items-center sm:grid-cols-2 xl:grid-cols-3">
           {photos.map((photo, index) => (
             <article key={index} className="h-full m-auto overflow-hidden bg-white rounded-lg shadow-lg h-90 w-60 md:w-80">
               <div className="block w-full h-full">
