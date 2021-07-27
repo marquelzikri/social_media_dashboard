@@ -16,7 +16,6 @@ function Comment(props: Partial<CommentModel & { showButtons?: boolean }>) {
     isSuccess: isDeletePostSuccess,
     error: deletePostError,
   }] = useDeleteCommentMutation();
-  console.log('a', props)
 
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [isDeletingComment, setIsDeletingComment] = useState(false);

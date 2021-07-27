@@ -9,7 +9,6 @@ import { Comment as CommentModel } from '../../models/Post';
 
 function CommentForm(props: Partial<CommentModel>) {
   const isCreateForm: boolean = props.id == null;
-  console.log('props', props, isCreateForm);
 
   const [createComment, {
     isLoading: isCreatingComment,

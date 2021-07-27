@@ -18,25 +18,25 @@ function Profile() {
   const { data: user, isLoading } = useGetUserQuery({ userId }, { skip: !userId });
 
   return (
-    <section id="profile" className="justify-between h-full gap-3 md:flex">
+    <section data-testid="profile" className="justify-between h-full gap-3 md:flex">
       <section className="flex justify-center w-full mb-8 md:w-auto">
         <UserCard isLoading={isLoading} {...user} />
       </section>
-      <ProfileContent userId={userId} />
+      {userId && (<ProfileContent userId={userId} />)}
     </section>
   );
 }
 
-function ProfileContent(props: any) {
+function ProfileContent(props: {userId: number}) {
   const { userId } = props;
 
   const [activeTab, setActiveTab] = useState('Posts');
 
   return (
-    <section className="w-full md:h-full h-profile-content">
+    <section data-testid="profile-content" className="w-full md:h-full h-profile-content">
       <ul className="flex h-10 border-b-2 border-gray-200 border-solid cursor-pointer">
-        <TabItem isTabActive={activeTab === "Posts"} label={"Posts"} setActiveTab={setActiveTab} />
-        <TabItem isTabActive={activeTab === "Albums"} label={"Albums"} setActiveTab={setActiveTab} />
+        <TabItem index={0} isTabActive={activeTab === "Posts"} label={"Posts"} setActiveTab={setActiveTab} />
+        <TabItem index={1} isTabActive={activeTab === "Albums"} label={"Albums"} setActiveTab={setActiveTab} />
       </ul>
       {activeTab === "Posts" && <Posts userId={userId} />}
       {activeTab === "Albums" && <Albums userId={userId} />}
@@ -44,9 +44,10 @@ function ProfileContent(props: any) {
   );
 }
 
-function TabItem(props: any) {
+function TabItem(props: {index: number, label: string, isTabActive: boolean, setActiveTab: Function}) {
   return (
     <li
+      data-testid={`tab-item-${props.index}`}
       className={clsx(
         "rounded-t-lg",
         props.isTabActive ? "bg-white" : "text-gray-500 bg-gray-200"
@@ -59,13 +60,13 @@ function TabItem(props: any) {
   );
 }
 
-function Posts(props: any) {
+function Posts(props: {userId: number}) {
   const { userId } = props;
   const { data: posts, error, isLoading, isError } = useGetUserPostsQuery({ userId }, { skip: !userId });
 
   if (isError) return <span>{JSON.stringify(error)}</span>
   return (
-    <section className="justify-center overflow-auto h-post-wrapper md:block md:h-full">
+    <section data-testid="user-posts" className="justify-center overflow-auto h-post-wrapper md:block md:h-full">
       {isLoading ? (
         <Loader label="Loading posts" />
       ) : (
@@ -75,13 +76,13 @@ function Posts(props: any) {
   );
 }
 
-function Albums(props: any) {
+function Albums(props: {userId: number}) {
   const { userId } = props;
   const { data: albums, error, isLoading, isError } = useGetUserAlbumsQuery({ userId }, { skip: !userId });
 
   if (isError) return <span>{JSON.stringify(error)}</span>
   return (
-    <section className="overflow-auto h-post-wrapper md:h-full">
+    <section data-testid="user-albums" className="overflow-auto h-post-wrapper md:h-full">
       {isLoading ? (
         <Loader label="Loading posts" />
       ) : (
