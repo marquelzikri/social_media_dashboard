@@ -15,7 +15,7 @@ import Users from './app/pages/Users';
 
 function App() {
   return (
-    <div className="flex justify-center w-screen overflow-hidden bg-gray-100">
+    <div data-testid="app" className="flex justify-center w-screen overflow-hidden bg-gray-100">
       <Router>
         <Dashboard>
           <Switch>
