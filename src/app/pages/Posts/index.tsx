@@ -17,7 +17,7 @@ function Posts() {
 
   return (
     <>
-      <div className="w-full h-full">
+      <div data-testid="posts" className="w-full h-full">
         <div className="flex items-end justify-between mb-12 header">
           <div className="title">
             <p className="text-4xl font-bold text-gray-800">

@@ -32,7 +32,7 @@ function Post(props: Partial<PostModel & { showButtons: boolean }>) {
 
   return (
     <>
-      <div className="flex justify-center w-full">
+      <div data-testid="post" className="flex justify-center w-full">
         <article className="p-4 m-4 bg-white rounded-md">
           <h1 className="text-xl font-bold">
             {postData.title}
