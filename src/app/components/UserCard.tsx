@@ -12,6 +12,7 @@ function UserCard(props: Partial<UserModel & { showProfileButton?: boolean, isLo
 
   return (
     <div
+      data-testid="user-card"
       className={clsx(
         "w-64 bg-white shadow-lg rounded-2xl dark:bg-gray-800",
         showProfileButton ? "max-h-80" : "max-h-60"
