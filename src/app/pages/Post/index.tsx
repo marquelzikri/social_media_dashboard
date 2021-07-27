@@ -23,7 +23,7 @@ function Post() {
   if (isPostLoading) return <Loader label="Loading post detail" />
   return (
     <>
-      <section id="posts" className="justify-between h-full gap-3 overflow-auto">
+      <section data-testid="post" className="justify-between h-full gap-3 overflow-auto">
         <section className="mb-8">
           <article className="p-4 bg-white rounded-md">
             <h1 className="mb-4 text-xl font-bold">

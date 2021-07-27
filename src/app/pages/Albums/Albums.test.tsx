@@ -1,5 +1,4 @@
 import { render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import { MemoryRouter, Route } from 'react-router-dom';
 
 import TestProvider from '../../components/TestProvider';
 

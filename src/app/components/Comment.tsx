@@ -30,7 +30,7 @@ function Comment(props: Partial<CommentModel & { showButtons?: boolean }>) {
 
   return (
     <>
-      <article className="p-4 my-4 bg-white rounded-md 2xl:w-1/2">
+      <article data-testid="comment" className="p-4 my-4 bg-white rounded-md 2xl:w-1/2">
         <h1 className="text-xl font-bold">
           {props.name}
         </h1>
